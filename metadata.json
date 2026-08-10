@@ -1,0 +1,6 @@
+{
+  "name": "RA Solar Intelligence",
+  "description": "Mission-critical solar energy platform for field optimization, weather-aware forecasting, grid balancing, and storage orchestration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
