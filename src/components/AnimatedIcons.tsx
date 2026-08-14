@@ -1,6 +1,6 @@
 import React from "react";
 
-// Animated Snowflake SVG Icon replacing "❄️"
+// Animated Snowflake SVG Icon replacing "â„ï¸"
 export function AnimatedSnowflake({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -47,7 +47,7 @@ export function AnimatedSnowflake({ className = "w-4 h-4" }: { className?: strin
   );
 }
 
-// Animated Robot Head SVG Icon replacing "🤖"
+// Animated Robot Head SVG Icon replacing "ðŸ¤–"
 export function AnimatedRobot({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -108,7 +108,7 @@ export function AnimatedRobot({ className = "w-4 h-4" }: { className?: string })
   );
 }
 
-// Animated Warning Triangle SVG Icon replacing "⚠️"
+// Animated Warning Triangle SVG Icon replacing "âš ï¸"
 export function AnimatedWarning({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -149,7 +149,7 @@ export function AnimatedWarning({ className = "w-4 h-4" }: { className?: string 
   );
 }
 
-// Animated Energy/Lightning SVG Icon replacing "⚡"
+// Animated Energy/Lightning SVG Icon replacing "âš¡"
 export function AnimatedLightning({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -183,7 +183,7 @@ export function AnimatedLightning({ className = "w-4 h-4" }: { className?: strin
   );
 }
 
-// Animated Battery SVG Icon replacing "🔋"
+// Animated Battery SVG Icon replacing "ðŸ”‹"
 export function AnimatedBattery({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -222,7 +222,7 @@ export function AnimatedBattery({ className = "w-4 h-4" }: { className?: string 
   );
 }
 
-// Animated Gear SVG Icon replacing "⚙️"
+// Animated Gear SVG Icon replacing "âš™ï¸"
 export function AnimatedGear({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -233,7 +233,7 @@ export function AnimatedGear({ className = "w-4 h-4" }: { className?: string }) 
       strokeWidth="2" 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${className} text-zinc-405`}
+      className={`${className} text-zinc-400`}
     >
       <style>{`
         @keyframes gearRotate {
@@ -253,7 +253,7 @@ export function AnimatedGear({ className = "w-4 h-4" }: { className?: string }) 
   );
 }
 
-// Animated Sun SVG Icon replacing "☀️"
+// Animated Sun SVG Icon replacing "â˜€ï¸"
 export function AnimatedSun({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg 
@@ -264,7 +264,7 @@ export function AnimatedSun({ className = "w-4 h-4" }: { className?: string }) {
       strokeWidth="2" 
       strokeLinecap="round" 
       strokeLinejoin="round" 
-      className={`${className} text-yellow-550`}
+      className={`${className} text-yellow-500`}
     >
       <style>{`
         @keyframes sunPulse {
@@ -305,31 +305,31 @@ export function AnimatedSun({ className = "w-4 h-4" }: { className?: string }) {
 export function TextWithAnimatedIcons({ text }: { text: string }) {
   if (!text) return null;
   // Match standard emoticons / emojis we support
-  const regex = /(❄️|❄|🤖|⚠️|⚡|🔋|⚙️|⚙|☀️)/g;
+  const regex = /(â„ï¸|â„|ðŸ¤–|âš ï¸|âš¡|ðŸ”‹|âš™ï¸|âš™|â˜€ï¸)/g;
   const parts = text.split(regex);
   
   return (
     <>
       {parts.map((part, index) => {
-        if (part === "❄️" || part === "❄") {
+        if (part === "â„ï¸" || part === "â„") {
           return <AnimatedSnowflake key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
-        if (part === "🤖") {
+        if (part === "ðŸ¤–") {
           return <AnimatedRobot key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
-        if (part === "⚠️") {
+        if (part === "âš ï¸") {
           return <AnimatedWarning key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
-        if (part === "⚡") {
+        if (part === "âš¡") {
           return <AnimatedLightning key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
-        if (part === "🔋") {
+        if (part === "ðŸ”‹") {
           return <AnimatedBattery key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
-        if (part === "⚙️" || part === "⚙") {
+        if (part === "âš™ï¸" || part === "âš™") {
           return <AnimatedGear key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
-        if (part === "☀️") {
+        if (part === "â˜€ï¸") {
           return <AnimatedSun key={index} className="inline-block w-4 h-4 mx-0.5 align-middle" />;
         }
         return <span key={index}>{part}</span>;

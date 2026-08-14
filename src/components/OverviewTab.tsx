@@ -56,7 +56,7 @@ export default function OverviewTab({
           <div className="space-y-2">
             <div className="flex justify-between items-center text-xs font-mono">
               <span className="text-zinc-400">Panel Tilt Tilt</span>
-              <span className="text-yellow-500 font-bold">{selectedFarm.panelTiltDegrees}°</span>
+              <span className="text-yellow-500 font-bold">{selectedFarm.panelTiltDegrees}Â°</span>
             </div>
             <input 
               type="range" 
@@ -67,9 +67,9 @@ export default function OverviewTab({
               className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-yellow-500"
             />
             <div className="flex justify-between text-[9px] font-mono text-zinc-500">
-              <span>0° Flat</span>
-              <span>Perfect 42.5°</span>
-              <span>90° Vertical</span>
+              <span>0Â° Flat</span>
+              <span>Perfect 42.5Â°</span>
+              <span>90Â° Vertical</span>
             </div>
           </div>
 
@@ -77,7 +77,7 @@ export default function OverviewTab({
           <div className="space-y-2">
             <div className="flex justify-between items-center text-xs font-mono">
               <span className="text-zinc-400">Cell Thermostat</span>
-              <span className={`font-bold ${selectedFarm.temperatureC > 50 ? "text-red-400" : "text-zinc-300"}`}>{selectedFarm.temperatureC.toFixed(1)}°C</span>
+              <span className={`font-bold ${selectedFarm.temperatureC > 50 ? "text-red-400" : "text-zinc-300"}`}>{selectedFarm.temperatureC.toFixed(1)}Â°C</span>
             </div>
             <input 
               type="range" 
@@ -89,9 +89,9 @@ export default function OverviewTab({
               className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-yellow-500"
             />
             <div className="flex justify-between text-[9px] font-mono text-zinc-500">
-              <span>10° Winter</span>
-              <span>50° Max Nom</span>
-              <span>80° Extreme</span>
+              <span>10Â° Winter</span>
+              <span>50Â° Max Nom</span>
+              <span>80Â° Extreme</span>
             </div>
           </div>
 
@@ -165,12 +165,12 @@ export default function OverviewTab({
             <div className="absolute inset-0 border-4 border-zinc-800 rounded-full"></div>
             <div className="absolute inset-0 border-4 border-yellow-500 rounded-full border-t-transparent border-r-transparent transition-transform" style={{ transform: `rotate(${(selectedFarm.panelTiltDegrees / 90) * 180 - 45}deg)` }}></div>
             <div className="flex flex-col items-center">
-              <span className="text-xl font-mono font-bold text-white">{selectedFarm.panelTiltDegrees}°</span>
+              <span className="text-xl font-mono font-bold text-white">{selectedFarm.panelTiltDegrees}Â°</span>
               <span className="text-[9px] font-mono text-zinc-500 uppercase">Real Zenith</span>
             </div>
           </div>
           <div className="text-[10px] text-zinc-400 mt-4 text-center leading-relaxed font-light">
-            Azimuth target: <span className="text-yellow-500 font-mono font-bold">42.5° Optimal</span>
+            Azimuth target: <span className="text-yellow-500 font-mono font-bold">42.5Â° Optimal</span>
           </div>
         </div>
 
@@ -241,13 +241,13 @@ export default function OverviewTab({
         </div>
         <div className="space-y-3 font-mono text-[11px] text-zinc-400">
           {dispatchBufferLog.map((log, idx) => (
-            <div key={idx} className="flex gap-2 items-start leading-relaxed p-1.5 bg-zinc-950/40 border border-zinc-850 rounded-sm">
+            <div key={idx} className="flex gap-2 items-start leading-relaxed p-1.5 bg-zinc-950/40 border border-zinc-800 rounded-sm">
               <TermSymbol />
               <span>{log}</span>
             </div>
           ))}
         </div>
-        <div className="pt-4 border-t border-zinc-850 mt-4 flex justify-between items-center text-[10px] font-mono text-zinc-500">
+        <div className="pt-4 border-t border-zinc-800 mt-4 flex justify-between items-center text-[10px] font-mono text-zinc-500">
           <span>Frequency: {gridFrequency} Hz</span>
           <span className="text-emerald-500 flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>

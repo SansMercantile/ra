@@ -190,7 +190,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
       </header>
 
       {/* Horizontal tactile navigation tag list for responsive mobile devices */}
-      <div className="flex md:hidden bg-zinc-950/90 border-b border-zinc-850 px-4 py-2.5 overflow-x-auto gap-3 scrollbar-none items-center sticky top-[69px] z-45 backdrop-blur-md">
+      <div className="flex md:hidden bg-zinc-950/90 border-b border-zinc-800 px-4 py-2.5 overflow-x-auto gap-3 scrollbar-none items-center sticky top-[69px] z-45 backdrop-blur-md">
         <button 
           onClick={() => setCurrentPage("home")} 
           className={`text-[9px] font-mono tracking-wider uppercase font-bold shrink-0 px-3 py-1.5 rounded-sm transition-colors ${currentPage === "home" ? "bg-yellow-500 text-zinc-950" : "text-zinc-400 bg-zinc-900 border border-zinc-800"}`}
@@ -246,7 +246,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                   Solar Intelligence, Forecasting, <br />and <span className="font-black text-yellow-500 italic">Grid Optimization.</span>
                 </h1>
 
-                <p className="text-sm sm:text-base text-zinc-405 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+                <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
                   RA is a mission-critical clean power platform combining weather-aware multi-spectral tracking, active panel thermal tuning, and high-density storage orchestration. It guarantees reliable grid balancing under extreme ambient indices.
                 </p>
 
@@ -261,7 +261,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                   </button>
                   <button
                     onClick={() => setCurrentPage("contact")}
-                    className="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-805 border border-zinc-800 text-zinc-300 font-mono text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-sm transition-all text-center cursor-pointer"
+                    className="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 font-mono text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-sm transition-all text-center cursor-pointer"
                   >
                     Request Consult
                   </button>
@@ -271,19 +271,19 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl w-full mt-16 border-t border-b border-zinc-800 py-6">
                   <div className="text-center">
                     <div className="text-2xl font-bold font-mono text-zinc-100">98.9%</div>
-                    <div className="text-[9px] uppercase tracking-widest text-zinc-550 font-bold mt-1">Forecast Accuracy</div>
+                    <div className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mt-1">Forecast Accuracy</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold font-mono text-yellow-500">14ms</div>
-                    <div className="text-[9px] uppercase tracking-widest text-zinc-550 font-bold mt-1">Grid Dispatch</div>
+                    <div className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mt-1">Grid Dispatch</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold font-mono text-zinc-100">&lt; 1%</div>
-                    <div className="text-[9px] uppercase tracking-widest text-zinc-550 font-bold mt-1">Thermal Derate</div>
+                    <div className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mt-1">Thermal Derate</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold font-mono text-yellow-500">24H</div>
-                    <div className="text-[9px] uppercase tracking-widest text-zinc-550 font-bold mt-1">Cloud Simulation</div>
+                    <div className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mt-1">Cloud Simulation</div>
                   </div>
                 </div>
               </div>
@@ -326,7 +326,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                   ))}
                 </div>
 
-                <div className="mt-12 bg-zinc-900/20 border border-zinc-850 p-6 rounded-sm text-center">
+                <div className="mt-12 bg-zinc-900/20 border border-zinc-800 p-6 rounded-sm text-center">
                   <h4 className="text-sm font-mono text-zinc-300 font-bold mb-2">Ready to calibrate active solar fields?</h4>
                   <p className="text-xs text-zinc-400 font-light mb-4 leading-relaxed max-w-lg mx-auto">
                     Evaluate your utility grids using our fully interactive control simulator dashboard with real-time feedback loops.
@@ -347,7 +347,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                 <div className="max-w-2xl text-left mb-12">
                   <span className="text-[10px] font-mono text-yellow-500 tracking-widest uppercase font-bold block mb-2">SYSTEM CAPABILITIES</span>
                   <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">Designed for Modern Grids</h2>
-                  <p className="text-zinc-405 text-sm mt-3 font-light leading-relaxed">
+                  <p className="text-zinc-400 text-sm mt-3 font-light leading-relaxed">
                     Highly responsive Distributed Energy Resource Management Systems (DERMS) working natively to model weather degradation and execute precision grid-stabilizing dispatch loops.
                   </p>
                 </div>
@@ -356,7 +356,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                   {coreFeatures.map((feat, idx) => {
                     const IconComp = feat.icon;
                     return (
-                      <div key={idx} className="bg-zinc-900/40 border border-zinc-850 p-6 rounded-sm flex flex-col justify-between hover:border-zinc-700 transition-all">
+                      <div key={idx} className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-sm flex flex-col justify-between hover:border-zinc-700 transition-all">
                         <div>
                           <div className="w-12 h-12 rounded-sm bg-yellow-500/10 flex items-center justify-center text-yellow-500 mb-6">
                             <IconComp className="w-5 h-5" />
@@ -366,21 +366,21 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                         </div>
                         <div className="border-t border-zinc-800/60 pt-4">
                           <span className="font-mono text-[9px] text-yellow-500 uppercase tracking-widest block font-bold">SPECIFICATION</span>
-                          <span className="text-[11px] text-zinc-350 block font-mono mt-0.5">{feat.highlight}</span>
+                          <span className="text-[11px] text-zinc-400 block font-mono mt-0.5">{feat.highlight}</span>
                         </div>
                       </div>
                     );
                   })}
                 </div>
 
-                <div className="mt-12 border-t border-zinc-850 pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="mt-12 border-t border-zinc-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-6">
                   <div className="text-left font-mono">
                     <span className="text-[9px] text-zinc-500 block uppercase font-bold">COHERENCE STANDARD</span>
                     <span className="text-xs text-zinc-300">All features synchronized dynamically across telemetry streams.</span>
                   </div>
                   <button
                     onClick={onLaunchApp}
-                    className="w-full sm:w-auto bg-zinc-905 hover:bg-zinc-805 border border-zinc-800 text-zinc-200 font-mono text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-sm transition-all"
+                    className="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 font-mono text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-sm transition-all"
                   >
                     Interactive Console Preview
                   </button>
@@ -404,7 +404,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                     <div 
                       key={idx} 
                       onClick={onLaunchApp}
-                      className="border border-zinc-850 rounded-sm p-6 bg-zinc-950/60 flex flex-col justify-between hover:border-yellow-500/50 hover:bg-zinc-900/10 cursor-pointer transition-all hover:scale-[1.01]"
+                      className="border border-zinc-800 rounded-sm p-6 bg-zinc-950/60 flex flex-col justify-between hover:border-yellow-500/50 hover:bg-zinc-900/10 cursor-pointer transition-all hover:scale-[1.01]"
                     >
                       <div>
                         <div className="flex items-center justify-between mb-4">
@@ -414,7 +414,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                         <span className="text-yellow-500 text-[9px] uppercase font-mono tracking-widest font-bold block mb-3">{sys.tagline}</span>
                         <p className="text-zinc-400 text-xs leading-relaxed font-light">{sys.desc}</p>
                       </div>
-                      <div className="mt-6 pt-4 border-t border-zinc-900/60 flex items-center justify-between text-[10px] font-mono text-zinc-550">
+                      <div className="mt-6 pt-4 border-t border-zinc-900/60 flex items-center justify-between text-[10px] font-mono text-zinc-500">
                         <span>Status: Operational</span>
                         <span className="text-yellow-500">98% Coherence</span>
                       </div>
@@ -431,7 +431,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
             {/* Page 5: Contact Consult */}
             {currentPage === "contact" && (
               <div className="max-w-4xl mx-auto px-6 py-12 md:py-16 w-full flex-1 flex flex-col justify-start">
-                <div className="border border-zinc-850 bg-zinc-900/20 rounded-sm p-6 md:p-8">
+                <div className="border border-zinc-800 bg-zinc-900/20 rounded-sm p-6 md:p-8">
                   <div className="text-center max-w-xl mx-auto mb-10">
                     <span className="text-[10px] font-mono text-yellow-500 tracking-widest uppercase font-bold block mb-2">SECURE LOOPBACK</span>
                     <h2 className="text-2.5xl font-light text-zinc-100 tracking-tight">Initiate Solar Operations Consult</h2>
@@ -504,14 +504,14 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
                     </div>
 
                     <div className="pt-2 flex items-center justify-between">
-                      <span className="text-[9px] text-zinc-550 font-mono">
+                      <span className="text-[9px] text-zinc-500 font-mono">
                         * Input is secure in loop back log
                       </span>
 
                       <button 
                         type="submit" 
                         disabled={isSubmitting}
-                        className="bg-yellow-500 hover:bg-yellow-400 disabled:bg-zinc-805 text-zinc-950 font-mono text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-sm transition-all cursor-pointer shadow-md flex items-center gap-2"
+                        className="bg-yellow-500 hover:bg-yellow-400 disabled:bg-zinc-800 text-zinc-950 font-mono text-xs font-bold uppercase tracking-widest px-6 py-3 rounded-sm transition-all cursor-pointer shadow-md flex items-center gap-2"
                       >
                         {isSubmitting ? (
                           <span>Transmitting...</span>
@@ -538,7 +538,7 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
       </main>
 
       {/* Footer conforming strictly to Design HTML */}
-      <footer className="border-t border-zinc-850 bg-zinc-950 py-12 px-6 mt-12">
+      <footer className="border-t border-zinc-800 bg-zinc-950 py-12 px-6 mt-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentPage("home")}>
             <AnimatedDetailedSun className="w-8 h-8" />
@@ -548,8 +548,8 @@ export default function LandingPage({ onLaunchApp }: LandingPageProps) {
             </div>
           </div>
 
-          <span className="text-[10px] text-zinc-550 font-mono text-center">
-            © 2026 RA Solar Intelligence • Part of Sans Mercantile Constellation Suite
+          <span className="text-[10px] text-zinc-500 font-mono text-center">
+            Â© 2026 RA Solar Intelligence â€¢ Part of Sans Mercantile Constellation Suite
           </span>
 
           <div className="flex items-center gap-5 text-[10px] text-zinc-500 font-mono">

@@ -54,7 +54,7 @@ export default function App() {
     {
       id: "atacama-01",
       name: "Atacama Field Array",
-      location: "San Pedro, Chile • 23.8°S 69.1°W",
+      location: "San Pedro, Chile â€¢ 23.8Â°S 69.1Â°W",
       capacityMW: 450,
       currentOutputMW: 384,
       temperatureC: 42.5,
@@ -67,7 +67,7 @@ export default function App() {
     {
       id: "mojave-02",
       name: "Mojave Basin Core",
-      location: "California, USA • 35.0°N 117.2°W",
+      location: "California, USA â€¢ 35.0Â°N 117.2Â°W",
       capacityMW: 320,
       currentOutputMW: 260,
       temperatureC: 51.2,
@@ -80,7 +80,7 @@ export default function App() {
     {
       id: "karoo-03",
       name: "Karoo Distributed Array",
-      location: "Western Cape, RSA • 32.2°S 21.8°E",
+      location: "Western Cape, RSA â€¢ 32.2Â°S 21.8Â°E",
       capacityMW: 250,
       currentOutputMW: 242,
       temperatureC: 31.8,
@@ -194,7 +194,7 @@ Key Insights pending live cloud cover modeling feedback.`
   const [totalLoadActive, setTotalLoadActive] = useState<number>(384);
   const [dispatchBufferLog, setDispatchBufferLog] = useState<string[]>([
     "UTC 19:50:00 - Grid sync locked frequency standard secondary control.",
-    "UTC 19:51:30 - Atacama Array micro-alignment tracker matching 42° zenith.",
+    "UTC 19:51:30 - Atacama Array micro-alignment tracker matching 42Â° zenith.",
     "UTC 19:52:12 - Storage synchronization automated control system armed."
   ]);
 
@@ -205,7 +205,7 @@ Key Insights pending live cloud cover modeling feedback.`
   useEffect(() => {
     setSolarFarms(prev => prev.map(farm => {
       if (farm.id === selectedFarmId) {
-        // Alignment score relative to perfect 42.5° zenith angle
+        // Alignment score relative to perfect 42.5Â° zenith angle
         const alignmentScore = 100 - Math.min(100, Math.abs(farm.panelTiltDegrees - 42.5) * 2);
         // Efficiencies reduced by soot and cell thermal index (standard solar temperature coefficient -0.4%/C above nominal 25C)
         const temperatureLoss = Math.max(0, (farm.temperatureC - 25) * 0.004);
@@ -250,12 +250,12 @@ Key Insights pending live cloud cover modeling feedback.`
     return () => clearInterval(timer);
   }, []);
 
-  // Dispatch live telemetry to server-side Gemini Core Advising Agent
+  // Dispatch live telemetry to server-side Bedrock Core Advising Agent
   const handleRequestAdvisorReport = async () => {
     setIsGeneratingAdvisor(true);
     setAdvisorError(null);
     try {
-      const response = await fetch("/api/gemini/advisor", {
+      const response = await fetch("/api/ai/advisor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -309,7 +309,7 @@ Key Insights pending live cloud cover modeling feedback.`
         content: m.content
       }));
 
-      const response = await fetch("/api/gemini/chat", {
+      const response = await fetch("/api/ai/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: mappedMessages })
@@ -331,7 +331,7 @@ Key Insights pending live cloud cover modeling feedback.`
       setChatMessages(prev => [...prev, {
         id: `err-${Date.now()}`,
         role: "assistant",
-        content: `⚠️ Dialogue Core Interruption: ${error.message || "Failed to dispatch context to server-side Gemini API. Verify process variables."}`,
+        content: `âš ï¸ Dialogue Core Interruption: ${error.message || "Failed to dispatch context to server-side Gemini API. Verify process variables."}`,
         timestamp: new Date().toLocaleTimeString()
       }]);
     } finally {
@@ -532,7 +532,7 @@ Key Insights pending live cloud cover modeling feedback.`
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-850 rounded-sm text-[10px] font-mono text-zinc-400">
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-[10px] font-mono text-zinc-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>GRID LINK: LATENCY 14ms</span>
           </div>
@@ -549,7 +549,7 @@ Key Insights pending live cloud cover modeling feedback.`
         
         {/* Left Sidebar Banner: Integrated Ecosystem from Design HTML */}
         <aside id="app-sidebar" className="w-16 border-r border-zinc-800 flex flex-col items-center py-6 gap-8 bg-zinc-900/10">
-          <div className="writing-mode-vertical rotate-180 text-[10px] font-black uppercase tracking-[0.5em] text-zinc-650 shrink-0 select-none pb-4 border-b border-zinc-900">
+          <div className="writing-mode-vertical rotate-180 text-[10px] font-black uppercase tracking-[0.5em] text-zinc-600 shrink-0 select-none pb-4 border-b border-zinc-900">
           </div>
           <div className="flex flex-col gap-4">
             {ecosystemPlatforms.map(platform => (
@@ -564,7 +564,7 @@ Key Insights pending live cloud cover modeling feedback.`
                 {platform.name.substring(0,2)}
                 {/* Tooltip */}
                 <span className="absolute left-12 w-48 bg-zinc-900 border border-zinc-800 text-zinc-300 text-[11px] p-2 rounded-sm shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-all z-40 font-sans leading-relaxed">
-                  <strong className="text-yellow-500 font-mono block mb-1">{platform.name} • {platform.tagline}</strong>
+                  <strong className="text-yellow-500 font-mono block mb-1">{platform.name} â€¢ {platform.tagline}</strong>
                   {platform.description}
                 </span>
               </div>
@@ -591,7 +591,7 @@ Key Insights pending live cloud cover modeling feedback.`
                 <button
                   key={f.id}
                   onClick={() => setSelectedFarmId(f.id)}
-                  className={`px-3 py-1 text-xs font-mono font-bold tracking-wider rounded-sm transition-all focus:outline-none ${selectedFarmId === f.id ? "bg-yellow-500 text-zinc-900" : "bg-zinc-900 hover:bg-zinc-855 border border-zinc-800 text-zinc-300"}`}
+                  className={`px-3 py-1 text-xs font-mono font-bold tracking-wider rounded-sm transition-all focus:outline-none ${selectedFarmId === f.id ? "bg-yellow-500 text-zinc-900" : "bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300"}`}
                 >
                   {f.name.split(' ')[0]}
                 </button>
@@ -665,7 +665,7 @@ Key Insights pending live cloud cover modeling feedback.`
                 </p>
 
                 {/* Response area */}
-                <div className="bg-zinc-950 p-5 rounded-sm border border-zinc-850 text-xs font-mono mb-6 max-h-96 overflow-y-auto leading-relaxed text-zinc-300">
+                <div className="bg-zinc-950 p-5 rounded-sm border border-zinc-800 text-xs font-mono mb-6 max-h-96 overflow-y-auto leading-relaxed text-zinc-300">
                   {isGeneratingAdvisor ? (
                     <div className="flex flex-col items-center justify-center py-10 space-y-3">
                       <Loader2 className="w-8 h-8 text-yellow-500 animate-spin" />
@@ -728,11 +728,11 @@ Key Insights pending live cloud cover modeling feedback.`
                 </div>
 
                 {/* Dialog thread area */}
-                <div className="flex-1 bg-zinc-950 border border-zinc-850 rounded-sm p-4 overflow-y-auto space-y-3 mb-4 text-[11px] font-mono max-h-56 scroll-smooth">
+                <div className="flex-1 bg-zinc-950 border border-zinc-800 rounded-sm p-4 overflow-y-auto space-y-3 mb-4 text-[11px] font-mono max-h-56 scroll-smooth">
                   {chatMessages.map(msg => (
                     <div 
                       key={msg.id} 
-                      className={`p-2 rounded-sm ${msg.role === "assistant" ? "bg-zinc-90 w-11/12 border-l-2 border-yellow-500" : "bg-zinc-900/80 w-11/12 ml-auto text-right border-r-2 border-zinc-600 text-yellow-300"}`}
+                      className={`p-2 rounded-sm ${msg.role === "assistant" ? "bg-zinc-900 w-11/12 border-l-2 border-yellow-500" : "bg-zinc-900/80 w-11/12 ml-auto text-right border-r-2 border-zinc-600 text-yellow-300"}`}
                     >
                       <div className="text-[9px] text-zinc-500 flex justify-between items-center mb-1">
                         <span className="font-bold">{msg.role === "assistant" ? "RA CORE AI" : "OPERATOR"}</span>
@@ -740,7 +740,7 @@ Key Insights pending live cloud cover modeling feedback.`
                       </div>
                       <p className="leading-relaxed whitespace-pre-line text-left flex items-start gap-1.5">
                         {msg.id.startsWith("err-") && <AnimatedWarning className="w-3.5 h-3.5 mt-0.5 shrink-0" />}
-                        <TextWithAnimatedIcons text={msg.content.startsWith("Dialogue Core Interruption") || msg.content.startsWith("⚠️ Dialogue Core Interruption") ? msg.content.replace("⚠️", "") : msg.content} />
+                        <TextWithAnimatedIcons text={msg.content.startsWith("Dialogue Core Interruption") || msg.content.startsWith("âš ï¸ Dialogue Core Interruption") ? msg.content.replace("âš ï¸", "") : msg.content} />
                       </p>
                     </div>
                   ))}
@@ -767,7 +767,7 @@ Key Insights pending live cloud cover modeling feedback.`
                   <button 
                     type="submit"
                     disabled={chatLoading || !chatInput.trim()}
-                    className="bg-zinc-800 hover:bg-zinc-700 disabled:bg-zinc-900 border border-zinc-750 text-yellow-500 font-mono text-xs px-3 rounded-sm flex items-center justify-center transition-all cursor-pointer"
+                    className="bg-zinc-800 hover:bg-zinc-700 disabled:bg-zinc-900 border border-zinc-700 text-yellow-500 font-mono text-xs px-3 rounded-sm flex items-center justify-center transition-all cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5" />
                   </button>
@@ -787,7 +787,7 @@ Key Insights pending live cloud cover modeling feedback.`
         <div className="flex flex-wrap gap-8 text-center md:text-left">
           <div className="flex flex-col">
             <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1">Location sync</span>
-            <span className="text-xs font-mono">Atacama Desert System Base • 23.8°S 69.1°W</span>
+            <span className="text-xs font-mono">Atacama Desert System Base â€¢ 23.8Â°S 69.1Â°W</span>
           </div>
           <div className="flex flex-col">
             <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1">Telemetry Status</span>
@@ -799,12 +799,12 @@ Key Insights pending live cloud cover modeling feedback.`
           <div className="flex flex-col">
             <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1">Solar farm sync</span>
             <span className="text-xs font-mono text-zinc-300">
-              {solarFarms.length} Farms Online • {solarFarms.reduce((acc, f) => acc + f.currentOutputMW, 0)} MW actively dispatching
+              {solarFarms.length} Farms Online â€¢ {solarFarms.reduce((acc, f) => acc + f.currentOutputMW, 0)} MW actively dispatching
             </span>
           </div>
         </div>
         <div className="text-[10px] font-mono text-zinc-600 tracking-tighter">
-          © 2026 RA SOLAR INTELLIGENCE • MISSION CRITICAL CONSTELLATION SUITE
+          Â© 2026 RA SOLAR INTELLIGENCE â€¢ MISSION CRITICAL CONSTELLATION SUITE
         </div>
       </footer>
     </div>

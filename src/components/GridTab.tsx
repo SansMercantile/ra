@@ -36,7 +36,7 @@ export default function GridTab({
         </div>
 
         {/* Dynamic flow schema mapping telemetry */}
-        <div className="bg-zinc-950 p-5 rounded border border-zinc-850 space-y-4 font-mono text-xs">
+        <div className="bg-zinc-950 p-5 rounded border border-zinc-800 space-y-4 font-mono text-xs">
           <span className="text-[10px] uppercase font-bold text-zinc-500 block mb-2">Interconnect Routing Diagram</span>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center items-center">
             
@@ -58,7 +58,7 @@ export default function GridTab({
                 <div className="absolute top-0 bottom-0 bg-yellow-400 w-1/3 animate-[marquee_2.5s_linear_infinite]" style={{ transform: "skewX(-20deg)" }}></div>
               </div>
               
-              <span className="text-[8px] text-zinc-650 tracking-widest block uppercase">LINE IMPEDANCE: 0.04Ω</span>
+              <span className="text-[8px] text-zinc-600 tracking-widest block uppercase">LINE IMPEDANCE: 0.04Î©</span>
             </div>
 
             <div className="bg-zinc-900 border border-zinc-800 p-3 rounded text-zinc-300 relative">
@@ -116,7 +116,7 @@ export default function GridTab({
         </div>
         <div className="space-y-3 font-mono text-[11px] text-zinc-400">
           {dispatchBufferLog.map((log, idx) => (
-            <div key={idx} className="flex gap-2 items-start leading-relaxed p-1.5 bg-zinc-950/40 border border-zinc-850 rounded-sm">
+            <div key={idx} className="flex gap-2 items-start leading-relaxed p-1.5 bg-zinc-950/40 border border-zinc-800 rounded-sm">
               <TermSymbol />
               <span>{log}</span>
             </div>

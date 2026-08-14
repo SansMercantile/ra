@@ -194,17 +194,17 @@ export default function ConnectedDevicesSection({
       </div>
 
       {/* IoT Quick Totals Band */}
-      <div className="grid grid-cols-3 gap-4 bg-zinc-950/40 p-3 rounded border border-zinc-850 text-center font-mono">
+      <div className="grid grid-cols-3 gap-4 bg-zinc-950/40 p-3 rounded border border-zinc-800 text-center font-mono">
         <div>
-          <span className="text-[9px] text-zinc-550 block font-bold uppercase">DYNAMIC CLIENT SOLAR FEED</span>
+          <span className="text-[9px] text-zinc-500 block font-bold uppercase">DYNAMIC CLIENT SOLAR FEED</span>
           <span className="text-sm font-bold text-yellow-500">+{totalSolarW} W</span>
         </div>
         <div>
-          <span className="text-[9px] text-zinc-550 block font-bold uppercase">TOTAL CONNECTED STORE</span>
+          <span className="text-[9px] text-zinc-500 block font-bold uppercase">TOTAL CONNECTED STORE</span>
           <span className="text-sm font-bold text-emerald-400">{(totalBatteryCapacityWh / 1000).toFixed(1)} kWh</span>
         </div>
         <div>
-          <span className="text-[9px] text-zinc-550 block font-bold uppercase">MICRO-GRID BESS INJECTION</span>
+          <span className="text-[9px] text-zinc-500 block font-bold uppercase">MICRO-GRID BESS INJECTION</span>
           <span className="text-sm font-bold text-white">+{totalBatteryInjectionW} W</span>
         </div>
       </div>
@@ -213,7 +213,7 @@ export default function ConnectedDevicesSection({
       <div className="space-y-3">
         {devices.length === 0 ? (
           <div className="text-center py-10 bg-zinc-950/20 border border-dashed border-zinc-800 rounded">
-            <Wifi className="w-8 h-8 text-zinc-650 mx-auto mb-2 opacity-50" />
+            <Wifi className="w-8 h-8 text-zinc-600 mx-auto mb-2 opacity-50" />
             <h4 className="text-xs font-mono text-zinc-400 font-bold">No Personal Client Assets Online</h4>
             <p className="text-[10px] text-zinc-500 mt-1 max-w-sm mx-auto font-light">
               Your personal solar modules or portable battery generators appear unlinked. Use the **\"Connect IoT Asset\"** wizard above to synchronize your local setup.
@@ -224,7 +224,7 @@ export default function ConnectedDevicesSection({
             {devices.map((device) => (
               <div 
                 key={device.id} 
-                className="bg-zinc-950/60 border border-zinc-850 p-4 rounded-sm flex flex-col justify-between hover:border-zinc-700 transition-all gap-4"
+                className="bg-zinc-950/60 border border-zinc-800 p-4 rounded-sm flex flex-col justify-between hover:border-zinc-700 transition-all gap-4"
               >
                 <div>
                   {/* Title Bar */}
@@ -242,14 +242,14 @@ export default function ConnectedDevicesSection({
                       <div>
                         <h4 className="text-xs font-bold text-zinc-100 font-sans">{device.name}</h4>
                         <span className="text-[10px] font-mono text-zinc-500 block">
-                          {device.brand} • {device.model} ({device.location})
+                          {device.brand} â€¢ {device.model} ({device.location})
                         </span>
                       </div>
                     </div>
 
                     <button
                       onClick={() => onDeleteDevice(device.id)}
-                      className="text-zinc-550 hover:text-red-400 p-1 rounded hover:bg-zinc-900 transition-colors"
+                      className="text-zinc-500 hover:text-red-400 p-1 rounded hover:bg-zinc-900 transition-colors"
                       title="Disconnect asset link"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -339,7 +339,7 @@ export default function ConnectedDevicesSection({
                   <button
                     onClick={() => handleClassChange("battery")}
                     className={`p-3 border rounded-sm text-center flex flex-col items-center gap-1.5 transition-all text-xs ${
-                      deviceClass === "battery" ? "border-yellow-500 bg-yellow-500/5 text-yellow-500" : "border-zinc-805 bg-zinc-950 text-zinc-400 hover:border-zinc-700"
+                      deviceClass === "battery" ? "border-yellow-500 bg-yellow-500/5 text-yellow-500" : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700"
                     }`}
                   >
                     <Battery className="w-4 h-4" />
@@ -348,7 +348,7 @@ export default function ConnectedDevicesSection({
                   <button
                     onClick={() => handleClassChange("solar")}
                     className={`p-3 border rounded-sm text-center flex flex-col items-center gap-1.5 transition-all text-xs ${
-                      deviceClass === "solar" ? "border-yellow-500 bg-yellow-500/5 text-yellow-500" : "border-zinc-805 bg-zinc-950 text-zinc-400 hover:border-zinc-700"
+                      deviceClass === "solar" ? "border-yellow-500 bg-yellow-500/5 text-yellow-500" : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700"
                     }`}
                   >
                     <Sun className="w-4 h-4" />
@@ -357,7 +357,7 @@ export default function ConnectedDevicesSection({
                   <button
                     onClick={() => handleClassChange("ev")}
                     className={`p-3 border rounded-sm text-center flex flex-col items-center gap-1.5 transition-all text-xs ${
-                      deviceClass === "ev" ? "border-yellow-500 bg-yellow-500/5 text-yellow-500" : "border-zinc-805 bg-zinc-950 text-zinc-400 hover:border-zinc-700"
+                      deviceClass === "ev" ? "border-yellow-500 bg-yellow-500/5 text-yellow-500" : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700"
                     }`}
                   >
                     <Zap className="w-4 h-4" />
@@ -368,67 +368,67 @@ export default function ConnectedDevicesSection({
                 <div className="border border-zinc-800 p-4 bg-zinc-950/20 rounded-sm space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[9px] font-mono uppercase text-zinc-450 mb-1 font-bold">Asset Custom Name *</label>
+                      <label className="block text-[9px] font-mono uppercase text-zinc-400 mb-1 font-bold">Asset Custom Name *</label>
                       <input 
                         type="text" 
                         required
                         placeholder="e.g. Balcony Solar 800W, Anker Solix Core" 
                         value={deviceName}
                         onChange={(e) => setDeviceName(e.target.value)}
-                        className="w-full bg-zinc-955 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
+                        className="w-full bg-zinc-950 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-[9px] font-mono uppercase text-zinc-455 mb-1 font-bold">Location Segment</label>
+                      <label className="block text-[9px] font-mono uppercase text-zinc-500 mb-1 font-bold">Location Segment</label>
                       <input 
                         type="text" 
                         placeholder="e.g. Roof South, Garage Rack" 
                         value={deviceLocation}
                         onChange={(e) => setDeviceLocation(e.target.value)}
-                        className="w-full bg-zinc-955 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
+                        className="w-full bg-zinc-950 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[9px] font-mono uppercase text-zinc-455 mb-1 font-bold">Brand Manufacturer</label>
+                      <label className="block text-[9px] font-mono uppercase text-zinc-500 mb-1 font-bold">Brand Manufacturer</label>
                       <input 
                         type="text" 
                         placeholder="e.g. EcoFlow, Renogy, Tesla" 
                         value={deviceBrand}
                         onChange={(e) => setDeviceBrand(e.target.value)}
-                        className="w-full bg-zinc-955 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
+                        className="w-full bg-zinc-950 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-[9px] font-mono uppercase text-zinc-455 mb-1 font-bold">Model Identifier</label>
+                      <label className="block text-[9px] font-mono uppercase text-zinc-500 mb-1 font-bold">Model Identifier</label>
                       <input 
                         type="text" 
                         placeholder="e.g. Delta Pro, Cybertruck Dual" 
                         value={deviceModel}
                         onChange={(e) => setDeviceModel(e.target.value)}
-                        className="w-full bg-zinc-955 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
+                        className="w-full bg-zinc-950 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 placeholder-zinc-700 focus:outline-none focus:border-yellow-500"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[9px] font-mono uppercase text-zinc-455 mb-1 font-bold">
+                      <label className="block text-[9px] font-mono uppercase text-zinc-500 mb-1 font-bold">
                         {deviceClass === "solar" ? "Peak Output (Watts)" : "Battery Capacity (Watt-hours)"}
                       </label>
                       <input 
                         type="number" 
                         value={deviceCapacity}
                         onChange={(e) => setDeviceCapacity(Number(e.target.value))}
-                        className="w-full bg-zinc-955 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-yellow-500 font-mono"
+                        className="w-full bg-zinc-950 border border-zinc-800 rounded-sm px-3 py-2 text-xs text-zinc-100 focus:outline-none focus:border-yellow-500 font-mono"
                       />
                     </div>
 
                     {(deviceClass === "battery" || deviceClass === "ev") && (
                       <div>
-                        <label className="block text-[9px] font-mono uppercase text-zinc-455 mb-1 font-bold">Current Battery Charge (SoC %)</label>
+                        <label className="block text-[9px] font-mono uppercase text-zinc-500 mb-1 font-bold">Current Battery Charge (SoC %)</label>
                         <input 
                           type="range" 
                           min="0" 
@@ -453,7 +453,7 @@ export default function ConnectedDevicesSection({
                   <button
                     disabled={!deviceName}
                     onClick={startPairingSequence}
-                    className="px-6 py-2 bg-yellow-400 text-zinc-950 hover:bg-yellow-300 disabled:bg-zinc-800 disabled:text-zinc-650 cursor-pointer rounded-sm text-[10px] font-mono uppercase tracking-wider font-bold"
+                    className="px-6 py-2 bg-yellow-400 text-zinc-950 hover:bg-yellow-300 disabled:bg-zinc-800 disabled:text-zinc-600 cursor-pointer rounded-sm text-[10px] font-mono uppercase tracking-wider font-bold"
                   >
                     Trigger Telemetry Sync
                   </button>
@@ -483,10 +483,10 @@ export default function ConnectedDevicesSection({
                   ></div>
                 </div>
 
-                <div className="bg-zinc-950 p-3 rounded border border-zinc-850 h-32 overflow-y-auto space-y-1.5 font-mono text-[9px] text-zinc-400 leading-relaxed">
+                <div className="bg-zinc-950 p-3 rounded border border-zinc-800 h-32 overflow-y-auto space-y-1.5 font-mono text-[9px] text-zinc-400 leading-relaxed">
                   {pairingLogs.map((log, idx) => (
                     <div key={idx} className="flex gap-1.5 items-start">
-                      <span className="text-yellow-555 select-none">»</span>
+                      <span className="text-yellow-500 select-none">Â»</span>
                       <span>{log}</span>
                     </div>
                   ))}
