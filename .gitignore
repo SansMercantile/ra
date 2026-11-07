@@ -6,3 +6,5 @@ coverage/
 *.log
 .env*
 !.env.example
+# runtime DB (lowdb) — never commit live data
+ra.db.json

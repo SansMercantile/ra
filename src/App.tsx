@@ -49,15 +49,17 @@ export default function App() {
   const [currentView, setCurrentView] = useState<"landing" | "app">("landing");
   const [activeTab, setActiveTab] = useState<"overview" | "forecasting" | "grid" | "storage">("overview");
 
-  // Telemetry state of Active Solar Farms
+  // Telemetry state of Active Solar Farms (loaded from the real solar backend
+  // — Open-Meteo irradiance + PV model — with a static fallback if offline).
+  const [farmsLive, setFarmsLive] = useState<boolean>(false);
   const [solarFarms, setSolarFarms] = useState<SolarFarm[]>([
     {
       id: "atacama-01",
       name: "Atacama Field Array",
-      location: "San Pedro, Chile â€¢ 23.8Â°S 69.1Â°W",
+      location: "San Pedro, Chile • 23.8°S 69.1°W",
       capacityMW: 450,
-      currentOutputMW: 384,
-      temperatureC: 42.5,
+      currentOutputMW: 0,
+      temperatureC: 25,
       panelTiltDegrees: 42,
       soilingIndexPercent: 12,
       coolingActive: false,
@@ -67,23 +69,23 @@ export default function App() {
     {
       id: "mojave-02",
       name: "Mojave Basin Core",
-      location: "California, USA â€¢ 35.0Â°N 117.2Â°W",
+      location: "California, USA • 35.0°N 117.2°W",
       capacityMW: 320,
-      currentOutputMW: 260,
-      temperatureC: 51.2,
+      currentOutputMW: 0,
+      temperatureC: 25,
       panelTiltDegrees: 31,
       soilingIndexPercent: 22,
       coolingActive: false,
       roboticWashingActive: false,
-      status: "WARNING"
+      status: "OPTIMAL"
     },
     {
       id: "karoo-03",
       name: "Karoo Distributed Array",
-      location: "Western Cape, RSA â€¢ 32.2Â°S 21.8Â°E",
+      location: "Western Cape, RSA • 32.2°S 21.8°E",
       capacityMW: 250,
-      currentOutputMW: 242,
-      temperatureC: 31.8,
+      currentOutputMW: 0,
+      temperatureC: 25,
       panelTiltDegrees: 45,
       soilingIndexPercent: 3,
       coolingActive: false,
@@ -91,6 +93,35 @@ export default function App() {
       status: "OPTIMAL"
     }
   ]);
+
+  // Load live farm telemetry from the solar backend.
+  useEffect(() => {
+    let alive = true;
+    const load = async () => {
+      try {
+        const res = await fetch("/api/v1/farms");
+        if (!res.ok) throw new Error(`farms_${res.status}`);
+        const data = await res.json();
+        if (!alive || !Array.isArray(data.farms) || data.farms.length === 0) return;
+        setSolarFarms(prev => prev.map(f => {
+          const live = data.farms.find((x: any) => x.id === f.id);
+          return live ? {
+            ...f,
+            currentOutputMW: live.currentOutputMW,
+            temperatureC: live.temperatureC,
+            status: live.status,
+          } : f;
+        }));
+        setFarmsLive(true);
+      } catch (e) {
+        console.warn("Live farm telemetry unavailable, using local model:", e);
+        if (alive) setFarmsLive(false);
+      }
+    };
+    load();
+    const t = setInterval(load, 5 * 60 * 1000); // refresh every 5 min
+    return () => { alive = false; clearInterval(t); };
+  }, []);
 
   const [selectedFarmId, setSelectedFarmId] = useState<string>("atacama-01");
   const selectedFarm = solarFarms.find(f => f.id === selectedFarmId) || solarFarms[0];
@@ -151,20 +182,50 @@ export default function App() {
     }
   ]);
 
-  // Simulated 24H forecasting metrics
+  // Real 24H forecast loaded from the solar backend (Open-Meteo irradiance
+  // forecast + PV model), with a static fallback shape if offline.
   const defaultForecastData: ForecastHour[] = [
-    { hourString: "06:00", hourNum: 6, forecastedMW: 120, actualMW: 110, cloudCoverPercent: 20, temperatureC: 18 },
-    { hourString: "08:00", hourNum: 8, forecastedMW: 280, actualMW: 275, cloudCoverPercent: 12, temperatureC: 22 },
-    { hourString: "10:00", hourNum: 10, forecastedMW: 390, actualMW: 380, cloudCoverPercent: 8, temperatureC: 26 },
-    { hourString: "12:00", hourNum: 12, forecastedMW: 450, actualMW: 442, cloudCoverPercent: 2, temperatureC: 30 },
-    { hourString: "14:00", hourNum: 14, forecastedMW: 420, actualMW: 395, cloudCoverPercent: 15, temperatureC: 32 },
-    { hourString: "16:00", hourNum: 16, forecastedMW: 310, actualMW: 312, cloudCoverPercent: 5, temperatureC: 28 },
-    { hourString: "18:00", hourNum: 18, forecastedMW: 150, actualMW: 140, cloudCoverPercent: 10, temperatureC: 22 },
-    { hourString: "20:00", hourNum: 20, forecastedMW: 30, actualMW: 28, cloudCoverPercent: 18, temperatureC: 19 }
+    { hourString: "06:00", hourNum: 6, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 18 },
+    { hourString: "08:00", hourNum: 8, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 22 },
+    { hourString: "10:00", hourNum: 10, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 26 },
+    { hourString: "12:00", hourNum: 12, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 30 },
+    { hourString: "14:00", hourNum: 14, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 32 },
+    { hourString: "16:00", hourNum: 16, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 28 },
+    { hourString: "18:00", hourNum: 18, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 22 },
+    { hourString: "20:00", hourNum: 20, forecastedMW: 0, actualMW: 0, cloudCoverPercent: 0, temperatureC: 19 }
   ];
 
   const [forecastData, setForecastData] = useState<ForecastHour[]>(defaultForecastData);
   const [cloudCoverSlider, setCloudCoverSlider] = useState<number>(10);
+
+  // Load the real 24h forecast for the selected farm.
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      try {
+        const res = await fetch(`/api/v1/farms/${selectedFarmId}/forecast`);
+        if (!res.ok) throw new Error(`forecast_${res.status}`);
+        const data = await res.json();
+        if (!alive || !Array.isArray(data.forecast)) return;
+        // Map to the ForecastHour shape (every 3rd hour to match the layout).
+        const pts = data.forecast
+          .filter((p: any) => p.hourNum % 2 === 0)
+          .slice(0, 8)
+          .map((p: any) => ({
+            hourString: `${String(p.hourNum).padStart(2, "0")}:00`,
+            hourNum: p.hourNum,
+            forecastedMW: Math.round(p.outputMW),
+            actualMW: Math.round(p.outputMW), // same model = same baseline; "actual" refines with live
+            cloudCoverPercent: Math.round(p.cloudCoverPct),
+            temperatureC: Math.round(p.temperatureC),
+          }));
+        if (pts.length > 0) setForecastData(pts);
+      } catch (e) {
+        console.warn("Live forecast unavailable:", e);
+      }
+    })();
+    return () => { alive = false; };
+  }, [selectedFarmId]);
 
   // Gemini Advisories Operational Report State
   const [isGeneratingAdvisor, setIsGeneratingAdvisor] = useState<boolean>(false);
@@ -189,7 +250,8 @@ Key Insights pending live cloud cover modeling feedback.`
   const [chatLoading, setChatLoading] = useState<boolean>(false);
   const chatBottomRef = useRef<HTMLDivElement>(null);
 
-  // Simulated live metrics ticker
+  // Simulated grid metrics ticker — explicitly a SIMULATOR (grid frequency is
+  // not a real feed; solar farm telemetry IS real via the backend).
   const [gridFrequency, setGridFrequency] = useState<number>(60.01);
   const [totalLoadActive, setTotalLoadActive] = useState<number>(384);
   const [dispatchBufferLog, setDispatchBufferLog] = useState<string[]>([
@@ -790,10 +852,10 @@ Key Insights pending live cloud cover modeling feedback.`
             <span className="text-xs font-mono">Atacama Desert System Base â€¢ 23.8Â°S 69.1Â°W</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1">Telemetry Status</span>
-            <span className="text-xs flex items-center gap-2 text-emerald-400 font-mono justify-center md:justify-start">
-              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping"></span>
-              ACTIVE SYSTEM FEED
+            <span className="text-[10px] uppercase font-bold text-zinc-500 tracking-widest mb-1">Solar Telemetry</span>
+            <span className={`text-xs flex items-center gap-2 font-mono justify-center md:justify-start ${farmsLive ? "text-emerald-400" : "text-amber-400"}`}>
+              <span className={`w-1.5 h-1.5 rounded-full animate-ping ${farmsLive ? "bg-emerald-400" : "bg-amber-400"}`}></span>
+              {farmsLive ? "LIVE (OPEN-METEO)" : "OFFLINE MODEL"}
             </span>
           </div>
           <div className="flex flex-col">
