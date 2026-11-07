@@ -44,6 +44,8 @@ import ForecastingTab from "./components/ForecastingTab";
 import GridTab from "./components/GridTab";
 import StorageTab from "./components/StorageTab";
 
+const API_BASE = (import.meta as any).env?.VITE_API_BASE_URL || "";
+
 export default function App() {
   useDetailedSunFavicon();
   const [currentView, setCurrentView] = useState<"landing" | "app">("landing");
@@ -99,7 +101,7 @@ export default function App() {
     let alive = true;
     const load = async () => {
       try {
-        const res = await fetch("/api/v1/farms");
+        const res = await fetch(`${API_BASE}/api/v1/farms`);
         if (!res.ok) throw new Error(`farms_${res.status}`);
         const data = await res.json();
         if (!alive || !Array.isArray(data.farms) || data.farms.length === 0) return;
@@ -203,7 +205,7 @@ export default function App() {
     let alive = true;
     (async () => {
       try {
-        const res = await fetch(`/api/v1/farms/${selectedFarmId}/forecast`);
+        const res = await fetch(`${API_BASE}/api/v1/farms/${selectedFarmId}/forecast`);
         if (!res.ok) throw new Error(`forecast_${res.status}`);
         const data = await res.json();
         if (!alive || !Array.isArray(data.forecast)) return;
@@ -317,7 +319,7 @@ Key Insights pending live cloud cover modeling feedback.`
     setIsGeneratingAdvisor(true);
     setAdvisorError(null);
     try {
-      const response = await fetch("/api/ai/advisor", {
+      const response = await fetch(`${API_BASE}/api/ai/advisor`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -371,7 +373,7 @@ Key Insights pending live cloud cover modeling feedback.`
         content: m.content
       }));
 
-      const response = await fetch("/api/ai/chat", {
+      const response = await fetch(`${API_BASE}/api/ai/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: mappedMessages })
